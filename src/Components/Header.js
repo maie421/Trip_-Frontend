@@ -45,7 +45,6 @@ export default () => {
               placeholder="Search"
             /> */}
           <HeaderLink to="/Login">로그인</HeaderLink>
-          <HeaderLink to="/Join">회원가입</HeaderLink>
         </HeaderWrapper>
       </HeaderColumn>
   );

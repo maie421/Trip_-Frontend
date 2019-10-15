@@ -8,13 +8,13 @@ const PostContainer =({
   user,
   files,
   likeCount,
-//   isLiked,
+  isLiked,
   comments,
   createdAt,
   caption,
   location
 })=>{
-// // //   const [isLikedS, setIsLiked] = useState(isLiked);
+  const [isLikedS, setIsLiked] = useState(isLiked);
   const [likeCountS, setLikeCount] = useState(likeCount);
   const comment = useInput("");
   return (
@@ -24,11 +24,11 @@ const PostContainer =({
       likeCount={likeCountS}
       location={location}
       caption={caption}
-    // //   isLiked={isLikedS}
+      isLiked={isLikedS}
       comments={comments}
       createdAt={createdAt}
       newComment={comment}
-    // //   setIsLiked={setIsLiked}
+      setIsLiked={setIsLiked}
       setLikeCount={setLikeCount}
     />);
 };
@@ -46,7 +46,7 @@ PostContainer.propTypes = {
     })
   ).isRequired,
   likeCount: PropTypes.number.isRequired,
-//   isLiked: PropTypes.bool.isRequired,
+  isLiked: PropTypes.bool.isRequired,
   comments:PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
