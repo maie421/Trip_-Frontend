@@ -67,9 +67,7 @@ export default () => {
           const{
             data:{LoginUser: token}
           }=await loginMutation();
-          console.log(JSON.stringify(token));
           if(token !==""&&token !==undefined){
-            console.log(`여기`);
             localLogInMutation({variables:{token}});
           }else{
             throw Error();

@@ -21,7 +21,7 @@ const FEED_QUERY = gql`
         url
       }
       likeCount
-    #   isLiked
+      isLiked
       comments {
         id
         text
@@ -35,8 +35,9 @@ const FEED_QUERY = gql`
   }
 `;
 
+console.log(`location ${localStorage.getItem("token")}`);
+
 const Wrapper = styled.div`
-  display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 80vh;
@@ -44,7 +45,6 @@ const Wrapper = styled.div`
 
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
-  console.log(JSON.stringify(data));
   return (<Wrapper>{loading && <Loader />}
         { !loading &&
           data &&
@@ -60,6 +60,7 @@ export default () => {
               comments ={post.comments}
               createdAt={post.createdAt}
               location={post.location}
+              localStorage={localStorage.getItem("token")}
             />
           ))}
         </Wrapper>

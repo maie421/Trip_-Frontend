@@ -7,8 +7,9 @@ import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
 const Post = styled.div`
   ${props => props.theme.whiteBox};
   width: 100%;
-  max-width: 600px;
+  max-width: 480px;
   user-select: none;
+  margin:0 auto;
   margin-bottom: 25px;
 `;
 
@@ -39,7 +40,7 @@ const Files = styled.div`
 const File = styled.div`
   max-width: 100%;
   width: 100%;
-  height: 600px;
+  height: 480px;
   position: absolute;
   top: 0;
   background-image: url(${props => props.src});
@@ -102,7 +103,8 @@ export default ({
   toggleLike,
   onKeyPress,
   comments,
-  selfComments
+  selfComments,
+  localStorage
 }) => (
   <Post>
     <Header>
@@ -119,16 +121,19 @@ export default ({
         ))}
     </Files>
     <Meta>
+    {(localStorage!==null) && (
       <Buttons>
+      
         <Button onClick={toggleLike}>
           {isLiked ? <HeartFull /> : <HeartEmpty />}
         </Button>
+      
         <Button>
           <CommentIcon />
         </Button>
-      </Buttons>
+      </Buttons>)}
       {/* <FatText text={likeCount === 1 ? "1 like" : `${likeCount} likes`} /> */}
-      {comments && (
+      {comments &&  (
         <Comments>
           {comments.map(comment => (
             <Comment key={comment.id}>
@@ -139,12 +144,13 @@ export default ({
         </Comments>
       )}
       <Timestamp>{createdAt}</Timestamp>
+      {(localStorage!==null) && (
       <Textarea
         onKeyPress={onKeyPress}
         placeholder={"Add a comment..."}
         value={newComment.value}
         onChange={newComment.onChange}
-      />
+      />)}
     </Meta>
   </Post>
 );
