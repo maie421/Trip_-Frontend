@@ -16,6 +16,7 @@ const HeaderColumn = styled.div`
   background-color:#282B2E;
   height:33px;
   width: 100%;
+  margin-bottom:10px;
 `;
 
 const SearchInput = styled(Input)`
@@ -40,9 +41,9 @@ export default () => {
           <Logo />
         </Link>
         <HeaderWrapper>
-            <SearchInput
+            {/* <SearchInput
               placeholder="Search"
-            />
+            /> */}
           <HeaderLink to="/Login">로그인</HeaderLink>
           <HeaderLink to="/Join">회원가입</HeaderLink>
         </HeaderWrapper>

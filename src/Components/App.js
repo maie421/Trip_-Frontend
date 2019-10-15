@@ -5,7 +5,6 @@ import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import Routes from "./Routes";
 import Header from "./Header";
-import Footer from "./Footer";
 import { HashRouter as Router } from "react-router-dom";
 
 export default () => (
