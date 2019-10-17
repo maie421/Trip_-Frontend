@@ -1,12 +1,12 @@
 import React,{useState} from "react";
 import PropTypes  from "prop-types";
 import useInput from "../../Hooks/useInput";
-import PostPresenter from "./postPresenter";
+import SearchPresenter from "./SearchPresenter";
 import { useMutation } from "react-apollo-hooks";
-import {LIKE,ADD_COMMENT} from "./postQuery";
+import {LIKE,ADD_COMMENT} from "../../Components/Post/postQuery";
 import { toast } from "react-toastify";
 
-const PostContainer =({
+const SearchContainer =({
   id,
   user,
   files,
@@ -55,7 +55,7 @@ const PostContainer =({
     }
   };
   return (
-    <PostPresenter
+    <SearchPresenter
       user={user}
       files={files}
       likeCount={likeCountS}
@@ -74,7 +74,7 @@ const PostContainer =({
     />);
 };
 
-PostContainer.propTypes = {
+SearchContainer.propTypes = {
   user:PropTypes.shape({//user:User!
     id:PropTypes.string.isRequired,
     avatar:PropTypes.string,
@@ -102,4 +102,4 @@ PostContainer.propTypes = {
   laoction:PropTypes.string,
 };
 
-export default PostContainer; 
+export default SearchContainer; 

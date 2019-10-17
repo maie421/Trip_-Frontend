@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link, withRouter } from "react-router-dom";
 import Login from "../Routes/Login";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
@@ -34,18 +34,27 @@ const HeaderLink = styled(Link)`
   color:white;
 `;
 
-export default () => {
+export default withRouter(({ history }) => {
+  const search = useInput("");
+  const onSearchSubmit = e => {
+    e.preventDefault();
+    history.push(`/search?term=${search.value}`);
+  };
   return (
       <HeaderColumn>
         <Link to="/">
           <Logo />
         </Link>
         <HeaderWrapper>
-            {/* <SearchInput
+        <form onSubmit={onSearchSubmit}>
+            <SearchInput
+              value={search.value}
+              onChange={search.onChange}
               placeholder="Search"
-            /> */}
+            />
           <HeaderLink to="/Login">로그인</HeaderLink>
+        </form>
         </HeaderWrapper>
       </HeaderColumn>
   );
-}; 
+}); 

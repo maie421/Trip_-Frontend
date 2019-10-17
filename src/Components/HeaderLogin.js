@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Login from "../Routes/Login";
+import { Link, withRouter } from "react-router-dom";
 import Input from "./Input";
+import {Logo} from "./Icons";
 import useInput from "../Hooks/useInput";
-import { Compass, HeartEmpty, User ,Logo} from "./Icons";
 
 const HeaderWrapper = styled.span`
   float:right;
@@ -29,23 +28,39 @@ const SearchInput = styled(Input)`
 `;
 
 const HeaderLink = styled(Link)`
-  padding:0 8px;
   text-decoration:none;
   color:white;
 `;
 
-export default () => {
+export default withRouter(({ history }) => {
+  const [actionLogout, setActionLogout] = useState("logout");
+  const search = useInput("");
+  if(actionLogout==="logout_1"){
+    localStorage.removeItem("token");
+    window.location = "/";
+  }
+
+  const onSearchSubmit = e => {
+    e.preventDefault();
+    console.log(`엔터${search.value}`)
+    history.push(`/search?term=${search.value}`);
+  };
+
   return (
       <HeaderColumn>
         <Link to="/">
           <Logo />
         </Link>
         <HeaderWrapper>
-            {/* <SearchInput
-              placeholder="Search"
-            /> */}
-          <HeaderLink to="/Login">로그아웃</HeaderLink>
+        <form onSubmit={onSearchSubmit}>
+          <SearchInput
+            value={search.value}
+            onChange={search.onChange}
+            placeholder="Search"
+          />
+            <HeaderLink onClick={()=>setActionLogout("logout_1")} >로그아웃</HeaderLink> 
+        </form>
         </HeaderWrapper>
       </HeaderColumn>
   );
-}; 
+}); 

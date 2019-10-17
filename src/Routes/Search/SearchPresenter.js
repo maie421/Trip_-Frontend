@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
-import FatText from "../FatText";
+import FatText from "../../Components/FatText";
 // import Avatar from "../Avatar";
-import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
+import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../../Components/Icons";
 const Post = styled.div`
   ${props => props.theme.whiteBox};
   width: 100%;

@@ -37,7 +37,6 @@ export default () => {
             setAction("confirm");
           }
         } catch(e){
-          console.log(e);
           toast.error("다시 비밀번호를 입력해 주세요");
         }
       } else {
@@ -69,6 +68,7 @@ export default () => {
           }=await loginMutation();
           if(token !==""&&token !==undefined){
             localLogInMutation({variables:{token}});
+            console.log(`토큰 생성 ${token}`);
           }else{
             throw Error();
           }
