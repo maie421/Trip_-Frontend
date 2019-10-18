@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
-import FatText from "../../Components/FatText";
+import FatText from "../FatText";
 // import Avatar from "../Avatar";
-import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../../Components/Icons";
+import { Delete,HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
 const Post = styled.div`
   ${props => props.theme.whiteBox};
   width: 100%;
@@ -62,6 +62,9 @@ const Buttons = styled.div`
   }
   margin-bottom: 10px;
 `;
+const EditButton=styled.span`
+  float:right;
+`;
 const Timestamp = styled.span`
   font-weight: 400;
   text-transform: uppercase;
@@ -104,7 +107,8 @@ export default ({
   onKeyPress,
   comments,
   selfComments,
-  localStorage
+  localStorage,
+  PostDelete
 }) => (
   <Post>
     <Header>
@@ -123,14 +127,14 @@ export default ({
     <Meta>
     {(localStorage!==null) && (
       <Buttons>
-      
         <Button onClick={SelectLike}>
           {isLiked ? <HeartFull /> : <HeartEmpty />}
         </Button>
-      
-        <Button>
-          <CommentIcon />
+        <EditButton>
+        <Button onClick={PostDelete}>
+          <Delete />
         </Button>
+        </EditButton>
       </Buttons>)}
       <FatText text={likeCount === 1 ? "1 like" : `${likeCount} like`} />
        {comments && (
@@ -155,8 +159,9 @@ export default ({
         onKeyPress={onKeyPress}
         placeholder={"Add a comment..."}
         value={newComment.value}
-        onChange={newComment.onChange}
-      />)}
+        onChange={newComment.onChange}/>
+
+      )}
     </Meta>
   </Post>
 );

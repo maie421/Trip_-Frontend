@@ -1,12 +1,13 @@
 import React,{useState} from "react";
 import PropTypes  from "prop-types";
 import useInput from "../../Hooks/useInput";
-import SearchPresenter from "./SearchPresenter";
-import { useMutation } from "react-apollo-hooks";
-import {LIKE,ADD_COMMENT} from "../../Components/Post/postQuery";
+import MyPostPresenter from "./MyPostPresenter";
+import { useMutation, useQuery } from "react-apollo-hooks";
+import {LIKE,ADD_COMMENT} from "../Post/postQuery";
 import { toast } from "react-toastify";
+import {MY_POST_E} from "./MyPostQuery";
 
-const SearchContainer =({
+const PostContainer =({
   id,
   user,
   files,
@@ -28,6 +29,10 @@ const SearchContainer =({
   const [likeMutation]=useMutation(LIKE,{
     variables:{postId:id}
   });
+  const [mypostMutation] = useMutation(MY_POST_E, {
+    variables: {         
+        id:id}
+  });
   const SelectLike=()=>{
     likeMutation();
     if(isLikedS===false){
@@ -37,6 +42,13 @@ const SearchContainer =({
       setIsLiked(false);
       setLikeCount(likeCountS-1);
     }
+  };
+  const PostDelete=()=>{
+      try{
+    mypostMutation();
+      }catch(e){
+        throw e;
+      }
   };
   const onKeyPress = async event => {
     const { which } = event;
@@ -55,7 +67,7 @@ const SearchContainer =({
     }
   };
   return (
-    <SearchPresenter
+    <MyPostPresenter
       user={user}
       files={files}
       likeCount={likeCountS}
@@ -71,10 +83,11 @@ const SearchContainer =({
       localStorage={localStorage}
       onKeyPress={onKeyPress}
       selfComments={selfComments}
+      PostDelete={PostDelete}
     />);
 };
 
-SearchContainer.propTypes = {
+PostContainer.propTypes = {
   user:PropTypes.shape({//user:User!
     id:PropTypes.string.isRequired,
     avatar:PropTypes.string,
@@ -102,4 +115,4 @@ SearchContainer.propTypes = {
   laoction:PropTypes.string,
 };
 
-export default SearchContainer; 
+export default PostContainer; 

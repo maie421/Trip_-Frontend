@@ -14,7 +14,7 @@ export const ADD_COMMENT = gql`
       id
       text
       name
-    }
+    } 
   }
 `;
 export const LOGIN=gql`

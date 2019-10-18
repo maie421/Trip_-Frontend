@@ -46,14 +46,13 @@ export default withRouter(({ history }) => {
           <Logo />
         </Link>
         <HeaderWrapper>
-        <form onSubmit={onSearchSubmit}>
+        {/* <form onSubmit={onSearchSubmit}>
             <SearchInput
               value={search.value}
               onChange={search.onChange}
               placeholder="Search"
-            />
+            /> */}
           <HeaderLink to="/Login">로그인</HeaderLink>
-        </form>
         </HeaderWrapper>
       </HeaderColumn>
   );

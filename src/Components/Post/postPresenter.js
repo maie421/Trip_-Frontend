@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
 import FatText from "../FatText";
 // import Avatar from "../Avatar";
-import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
+import { Delete,HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
 const Post = styled.div`
   ${props => props.theme.whiteBox};
   width: 100%;
@@ -61,6 +61,9 @@ const Buttons = styled.div`
     }
   }
   margin-bottom: 10px;
+`;
+const EditButton=styled.span`
+  float:right;
 `;
 const Timestamp = styled.span`
   font-weight: 400;
@@ -128,7 +131,7 @@ export default ({
           {isLiked ? <HeartFull /> : <HeartEmpty />}
         </Button>
       
-        <Button>
+        <Button >
           <CommentIcon />
         </Button>
       </Buttons>)}
@@ -155,8 +158,9 @@ export default ({
         onKeyPress={onKeyPress}
         placeholder={"Add a comment..."}
         value={newComment.value}
-        onChange={newComment.onChange}
-      />)}
+        onChange={newComment.onChange}/>
+
+      )}
     </Meta>
   </Post>
 );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import Input from "./Input";
-import {Logo} from "./Icons";
+import {Logo,seePost} from "./Icons";
 import useInput from "../Hooks/useInput";
 
 const HeaderWrapper = styled.span`
@@ -10,7 +10,11 @@ const HeaderWrapper = styled.span`
   padding-top:8px;
   vertical-align: middle;
 `;
-
+const HeaderCenter = styled.span`
+  float:center;
+  padding-top:8px;
+  vertical-align: middle;
+`;
 const HeaderColumn = styled.div`
   background-color:#282B2E;
   height:33px;
@@ -30,21 +34,16 @@ const SearchInput = styled(Input)`
 const HeaderLink = styled(Link)`
   text-decoration:none;
   color:white;
+  padding-right:10px;
 `;
 
-export default withRouter(({ history }) => {
+export default withRouter(() => {
   const [actionLogout, setActionLogout] = useState("logout");
-  const search = useInput("");
   if(actionLogout==="logout_1"){
     localStorage.removeItem("token");
     window.location = "/";
   }
 
-  const onSearchSubmit = e => {
-    e.preventDefault();
-    console.log(`엔터${search.value}`)
-    history.push(`/search?term=${search.value}`);
-  };
 
   return (
       <HeaderColumn>
@@ -52,14 +51,8 @@ export default withRouter(({ history }) => {
           <Logo />
         </Link>
         <HeaderWrapper>
-        <form onSubmit={onSearchSubmit}>
-          <SearchInput
-            value={search.value}
-            onChange={search.onChange}
-            placeholder="Search"
-          />
+            <HeaderLink to="/MyPost">MyPost</HeaderLink>
             <HeaderLink onClick={()=>setActionLogout("logout_1")} >로그아웃</HeaderLink> 
-        </form>
         </HeaderWrapper>
       </HeaderColumn>
   );
