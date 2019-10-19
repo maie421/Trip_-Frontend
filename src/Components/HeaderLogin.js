@@ -52,6 +52,7 @@ export default withRouter(() => {
         </Link>
         <HeaderWrapper>
             <HeaderLink to="/MyPost">MyPost</HeaderLink>
+            <HeaderLink to="/PostEdit">글쓰기</HeaderLink>
             <HeaderLink onClick={()=>setActionLogout("logout_1")} >로그아웃</HeaderLink> 
         </HeaderWrapper>
       </HeaderColumn>

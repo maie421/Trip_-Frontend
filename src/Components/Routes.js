@@ -2,6 +2,7 @@ import { HashRouter as Router, Route, Switch,Redirect } from "react-router-dom";
 import Post from "../Routes/Post";
 import Login from "../Routes/Login";
 import MyPost from "../Routes/MyPost";
+import PostEdit from "../Routes/PostEdit";
 import React from 'react';
 
 const LoggedOutRoutes = () => (
@@ -15,6 +16,7 @@ const LoggedInRoutes = () => (
   <Switch>
     <Route exact path="/" component={Post} />
     <Route exact path="/MyPost" component={MyPost} />
+    <Route exact path="/PostEdit" component={PostEdit} />
     <Redirect from="*" to="/" />
   </Switch>
 );
