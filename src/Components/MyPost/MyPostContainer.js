@@ -46,6 +46,7 @@ const PostContainer =({
   const PostDelete=()=>{
       try{
     mypostMutation();
+    // window.location = "/";
       }catch(e){
         throw e;
       }

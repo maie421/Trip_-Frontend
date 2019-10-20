@@ -56,14 +56,16 @@ export default ({
     onChangeHandler,
     onSubmit,
     location,
-    captionInput
+    caption
 }) => (
     <Wrapper>
-    <form onSubmit={onSubmit}>
-     <Input placeholder={"location"} {...location} />
-     <Input placeholder={"captionInput"} {...captionInput} />
-     <input type="file" name="file" onChange={onChangeHandler}/>
-     <Button text={"button"} />
-     </form>
+      <Form>
+      <form onSubmit={onSubmit}>
+      <Input placeholder={"location"} {...location} /><br/>
+      <Input placeholder={"caption"} {...caption} />
+      <input type="file" name="file" onChange={onChangeHandler}/>
+      <Button text={"button"} />
+      </form>
+     </Form>
   </Wrapper>
 );
