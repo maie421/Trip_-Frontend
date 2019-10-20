@@ -10,7 +10,7 @@ export const PostCreat=gql`
                 files: $files
                 location:$location
         ){
-        id
+        location
         }
     }
 `;

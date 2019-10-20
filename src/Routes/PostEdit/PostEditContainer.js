@@ -1,133 +1,171 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
+import axios from 'axios';
+import styled from "styled-components";
+import { gql } from "apollo-boost";
+import useInput from "../../Hooks/useInput";
+import { useMutation } from "react-apollo-hooks";
+import { FEED_QUERY } from "./Home";
+import PostEditPresenter from "./PostEditPresenter";
+import {PostCreat} from "./PostEditQuery"
+const Button = styled.button`
+  background-color: red;
+  padding: 10px;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Text = styled.span`
+  color: white;
+  font-weight: 600;
+`;
+export default () => {
+  let file=null;
+  let path=null;
+  const [loading, setIsLoading] = useState(false);
+  const captionInput = useInput("dfdf");
+  const location = useInput("dfdfd");
+  const [fileUrl, setFileUrl] = useState("");
+  const [uploadMutation] = useMutation(PostCreat);
+
+  const onChangeHandler=event=>{
+    file=event.target.files[0]
+    console.log(file);
+  }
+  
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (captionInput.value === "" || location.value === "") {
+      console.log("All fields are required");
+    }
+    if(file===null){
+      console.log("이미지 선택");
+    }
+    const formData = new FormData();
+    formData.append("file",file);
+    try {
+      setIsLoading(true);
+      await  axios.post("http://localhost:4000/api/upload", formData).then(res => {
+        console.log(`성공`);
+        path=res.data.path;
+        console.log(path);
+      }).catch(err => {
+        console.log(`실패`);
+      });
+      const {
+        data: { upload }
+      } = await uploadMutation({
+        variables: {
+          files: [`http://localhost:4000/${path}`],
+          caption: captionInput.value,
+          location: location.value
+        }
+      });
+
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return (
+    <PostEditPresenter
+    onChangeHandler={onChangeHandler}
+    onSubmit={onSubmit}
+    captionInput={captionInput}
+    location={location}
+    />
+  );
+};
+// import React, { Component } from 'react'
 // import axios from 'axios';
 // import styled from "styled-components";
-// import { gql } from "apollo-boost";
+// import Input from "../../Components/Input";
+// import Button from "../../Components/Button";
 // import useInput from "../../Hooks/useInput";
-// import { useMutation } from "react-apollo-hooks";
-// import { FEED_QUERY } from "./Home";
-// import PostEditPresenter from "./PostEditPresenter";
 
-// const UPLOAD = gql`
-//   mutation upload($caption: String!, $files: [String!]!, $location: String) {
-//     upload(caption: $caption, files: $files, location: $location) {
-//       id
-//       caption
-//       location
-//     }
-//   }
-// `;
-
-// const Button = styled.button`
-//   background-color: red;
-//   padding: 10px;
-//   border-radius: 4px;
+// const Wrapper = styled.div`
+//   min-height: 80vh;y
+//   vertical-align: middle;
+//   display: flex;
+//   margin:0 auto;
+//   width: 100%;
+//   max-width: 380px;
 //   align-items: center;
 //   justify-content: center;
+//   flex-direction: column;
 // `;
 
-// const Text = styled.span`
-//   color: white;
-//   font-weight: 600;
+// const Box = styled.div`
+//   ${props => props.theme.whiteBox}
+//   border-radius:0px;
+//   width: 100%;
+//   max-width: 350px;
 // `;
-// export default () => {
-//   const [loading, setIsLoading] = useState(false);
-//   const captionInput = useInput("dfdf");
-//   const locationInput = useInput("dfdfd");
-//   const [fileUrl, setFileUrl] = useState("");
-//   const uploadMutation = useMutation(UPLOAD, {
-//     refetchQueries: () => [{ query: FEED_QUERY }]
-//   });
-//   let name="";
-//   const onChangeHandler=event=>{
-//     console.log(event.target.files[0])
-//     name=event.target.files[0].name;
+
+// const StateChanger = styled(Box)`
+//   text-align: center;
+//   padding: 20px 0px;
+// `;
+
+// const Link = styled.span`
+//   color: ${props => props.theme.blueColor};
+//   cursor: pointer;
+// `;
+
+// const Form = styled(Box)`
+//   padding: 40px;
+//   padding-bottom: 30px;
+//   margin-bottom: 15px;
+//   form {
+//     width: 100%;
+//     input {
+//       width: 100%;
+//       &:not(:last-child) {
+//         margin-bottom: 7px;
+//       }
+//     }
+//     button {
+//       margin-top: 10px;
+//     }
 //   }
-  
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
-//     console.log(captionInput.value, locationInput.value);
-//     if (captionInput.value === "" || locationInput.value === "") {
-//       console.log("All fields are required");
+// `;
+// class PostEdit extends Component {
+
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       locationInput: '',
+//       selectedFile: null,
 //     }
-//     if(name==""){
-//       console.log("이미지 선택");
-//     }
+//   }
+
+//   handleFileInput(e){
+//     this.setState({
+//       selectedFile : e.target.files[0],
+//     })
+//   }
+
+//   handlePost=(e)=>{
 
 //     const formData = new FormData();
-//     formData.append("file", {
-//       name
-//     });
-//     console.log(name);
-//     try {
-//       setIsLoading(true);
-//       const {
-//         data: { location }
-//       } = await axios.post("http://localhost:4000/api/upload", formData, {
-//         headers: {
-//           "content-type": "multipart/form-data"
-//         }
-//       });
-//       console.log(formData);
-//       // const {
-//       //   data: { handleSubmit }
-//       // } = await uploadMutation({
-//       //   variables: {
-//       //     files: [location],
-//       //     caption: captionInput.value,
-//       //     location: locationInput.value
-//       //   }
-//       // });
-//     } catch (e) {
-//       console.log(e);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-//   return (
-//     <PostEditPresenter
-//     onSubmit={onSubmit}
-//     captionInput={captionInput}
-//     locationInput={locationInput}
-//     onChangeHandler={onChangeHandler}
-//     />
-//   );
-// };
-import React, { Component } from 'react'
-import axios from 'axios';
+//     formData.append('file', this.state.selectedFile);
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      selectedFile: null,
-    }
-  }
+//     return axios.post("http://localhost:4000/api/upload", formData).then(res => {
+//       console.log(`성공`);
+//     }).catch(err => {
+//       console.log(`실패`);
+//     })
+//   }
 
-  handleFileInput(e){
-    this.setState({
-      selectedFile : e.target.files[0],
-    })
-  }
+//   render() {
+//     return (
+//       <Wrapper>
+//         <input type="file" name="file" onChange={e => this.handleFileInput(e)}/>
+//         <Button onClick={this.handlePost()}>버튼</Button>
+//       </Wrapper>
+//     );
+//   }
+// }
 
-  handlePost(){
-    const formData = new FormData();
-    formData.append('file', this.state.selectedFile);
-
-    return axios.post("http://localhost:4000/api/upload", formData).then(res => {
-      alert('성공')
-    }).catch(err => {
-      alert('실패')
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <input type="file" name="file" onChange={e => this.handleFileInput(e)}/>
-        <button type="button" onClick={this.handlePost()}/>
-      </div>
-    )
-  }
-}
-
-export default App
+// export default PostEdit

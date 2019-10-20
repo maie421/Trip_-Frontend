@@ -53,18 +53,17 @@ const Form = styled(Box)`
 
 
 export default ({
-    locationInput,
-    captionInput,
+    onChangeHandler,
     onSubmit,
-    onChangeHandler
+    location,
+    captionInput
 }) => (
     <Wrapper>
     <form onSubmit={onSubmit}>
-     <Input placeholder={"locationInput"} {...locationInput} />
+     <Input placeholder={"location"} {...location} />
      <Input placeholder={"captionInput"} {...captionInput} />
+     <input type="file" name="file" onChange={onChangeHandler}/>
      <Button text={"button"} />
-    
-     <input type="file" name="file"/>
      </form>
   </Wrapper>
 );
