@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { gql } from "apollo-boost";
 import useInput from "../../Hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
-import { FEED_QUERY } from "./Home";
 import PostEditPresenter from "./PostEditPresenter";
 import {PostCreat} from "./PostEditQuery"
 
@@ -12,10 +11,10 @@ import {PostCreat} from "./PostEditQuery"
 export default () => {
   let file=null;
   let path=null;
+
   const [loading, setIsLoading] = useState(false);
   const caption = useInput("");
   const location = useInput("");
-  const [fileUrl, setFileUrl] = useState("");
   const [uploadMutation] = useMutation(PostCreat);
 
   const onChangeHandler=event=>{
