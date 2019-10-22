@@ -67,6 +67,7 @@ export default () => {
             data:{LoginUser: token}
           }=await loginMutation();
           if(token !==""&&token !==undefined){
+            window.location = "/";
             localLogInMutation({variables:{token}});
             console.log(`토큰 생성 ${token}`);
           }else{

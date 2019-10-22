@@ -1,12 +1,13 @@
-import React from "react";
+import React ,{ useState } from "react";
 import {gql} from "apollo-boost";
-import withRouter from "react-router-dom/withRouter";
-import {useQuery} from "react-apollo-hooks";
+import {useQuery, useMutation} from "react-apollo-hooks";
 import MyProfilePresenter from "./MyProfilePresenter"
+import {MY_POST_D} from "./MyProfileQuery";
+
 
 const GET_USER=gql`
-    query SeeUser($id:String!){
-        SeeUser(id:$id){
+    query me{
+        me{
             id
             name 
             email 
@@ -16,6 +17,8 @@ const GET_USER=gql`
             # comments
             posts{
                 id,
+                caption,
+                location,
                 files{
                     url
                 }
@@ -25,7 +28,37 @@ const GET_USER=gql`
     }
 `;
 
-export default withRouter(({ match: { params: { name } } }) => {
-    const { data, loading } = useQuery(GET_USER, { variables: { name } });
-    return <MyProfilePresenter loading={loading}  data={data} />;
-  });
+export default () => {
+    const [action, setAction] = useState("list");
+    const [Postdata, setPostdata] = useState("");
+    const { data, loading } = useQuery(GET_USER);
+    const [mypostMutation]=useMutation(MY_POST_D);
+    // const [SeeQuery] = useQuery(SEE_POST);
+    const Detail=async(e)=>{
+        setPostdata(e);
+        setAction("detail");
+    }
+    const PostDelete=async (e)=>{
+    try{
+        console.log(e);
+      await mypostMutation({
+        variables: {
+            id:e
+        }
+      });
+      window.location = "/";
+        }catch(e){
+          throw e;
+        }
+    };
+    console.log(Postdata);
+    console.log(data);
+    return <MyProfilePresenter 
+        loading={loading}  
+        Detail={Detail}
+        data={data}
+        Postdata={Postdata}
+        action={action}
+        PostDelete={PostDelete}
+     />;
+  };
