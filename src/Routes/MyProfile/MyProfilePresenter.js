@@ -47,13 +47,24 @@ const File = styled.div`
   background-position: center;
 
 `;
+const FileDtaile = styled.div`
+  width:550px;
+  height: 550px;
+  top: 0;
+  margin:0 auto;
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-position: center;
+
+`;
 const Username = styled.span`
   font-size: 26px;
   display: block;
 `;
 const Location = styled.div`
-  margin:0 atuo;
+  line-height:35px;
   font-size: 20px;
+  margin:-10px 0 5px 0;
 `;
 const FullName = styled(FatText)`
   font-size: 32px;
@@ -66,10 +77,27 @@ const Posts = styled.div`
   grid-auto-rows: 200px;
 `;
 const DetailPosts =styled.div`
-width: 1000px;;
-margin: 0 auto;
-text-align: center;
-background-color:red;
+  width: 900px;
+  margin: 0 auto;
+`;
+const ButtonBox=styled.div`
+  clear:both;
+  float:right;
+  width: 80px;
+  margin:20px 0;
+  margin-right:100px;
+`;
+
+const ButtonBox1 = styled.button`
+  width: 100%;
+  border: 0;
+  border-radius: ${props => props.theme.borderRadius};
+  color: white;
+  font-weight: 600;
+  background-color: ${props => props.theme.blueColor};
+  text-align: center;
+  padding: 7px 0px;
+  font-size: 14px;
 `;
 export default ({ loading, data ,Detail,action,Postdata,PostDelete}) => {
   if (loading === true) {
@@ -105,11 +133,12 @@ export default ({ loading, data ,Detail,action,Postdata,PostDelete}) => {
         }
         {action==="detail" && 
         <DetailPosts>
-           <Location>장소:{Postdata[2]}</Location>
-           <Location>{Postdata[1]}</Location>
-           <File src={Postdata[3]} />
-           {/* <Button text={"수정"} /> */}
-           <button text={"삭제"} onClick={()=>PostDelete(Postdata[0])}/>
+           <Location>location: {Postdata[2]}</Location>
+           <Location>commnet: {Postdata[1]}</Location>
+           <FileDtaile src={Postdata[3]} />
+           <ButtonBox>
+           <ButtonBox1 onClick={()=>PostDelete(Postdata[0])}>삭제</ButtonBox1>
+           </ButtonBox>
         </DetailPosts>
         }
         </Posts>

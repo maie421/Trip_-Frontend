@@ -126,11 +126,9 @@ export default ({
     <Meta>
     {(localStorage!==null) && (
       <Buttons>
-      
         <Button onClick={SelectLike}>
           {isLiked ? <HeartFull /> : <HeartEmpty />}
         </Button>
-      
         <Button >
           <CommentIcon />
         </Button>
