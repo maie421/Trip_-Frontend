@@ -11,7 +11,7 @@ export default () => {
   const name = useInput("");
   const age = useInput("");
   const password = useInput("");
-  const email = useInput("maie421@naver.com");
+  const email = useInput("");
   const [requestSecretMutation] = useMutation(PASSWORD_FIND, { variables: { email: email.value } });
   const [join]=useMutation(JOIN,{
     variables:{
