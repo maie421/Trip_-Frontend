@@ -64,7 +64,7 @@ export default ({
       <Input placeholder={"location"} {...location} /><br/>
       <Input placeholder={"caption"} {...caption} />
       <input type="file" name="file" onChange={onChangeHandler}/>
-      <Button text={"button"} />
+      <Button text={"확인"} />
       </form>
      </Form>
   </Wrapper>

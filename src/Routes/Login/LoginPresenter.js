@@ -63,6 +63,7 @@ export default ({
 }) => (
   <Wrapper>
     <Form>
+    {action === "logIn" && (
     <>
       <Helmet>
         <title>로그인</title>
@@ -72,6 +73,7 @@ export default ({
         <Button text={"Log in"} />
       </form>
     </>
+    )}
       {action === "signUp" && (
         <>
         <Helmet>

@@ -64,7 +64,7 @@ const Username = styled.span`
 const Location = styled.div`
   line-height:35px;
   font-size: 20px;
-  margin:-10px 0 5px 0;
+  margin:-10px 0 5px 170px;
 `;
 const FullName = styled(FatText)`
   font-size: 32px;
@@ -133,8 +133,8 @@ export default ({ loading, data ,Detail,action,Postdata,PostDelete}) => {
         }
         {action==="detail" && 
         <DetailPosts>
-           <Location>location: {Postdata[2]}</Location>
-           <Location>commnet: {Postdata[1]}</Location>
+           <Location>{Postdata[2]}</Location>
+           <Location>{Postdata[1]}</Location>
            <FileDtaile src={Postdata[3]} />
            <ButtonBox>
            <ButtonBox1 onClick={()=>PostDelete(Postdata[0])}>삭제</ButtonBox1>

@@ -6,7 +6,8 @@ import useInput from "../../Hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
 import PostEditPresenter from "./PostEditPresenter";
 import {PostCreat} from "./PostEditQuery"
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default () => {
   let file=null;
@@ -28,16 +29,15 @@ export default () => {
       console.log("All fields are required");
     }
     if(file===null){
-      console.log("이미지 선택");
+      toast.error("파일을 선택해주세요.");
     }
     const formData = new FormData();
     formData.append("file",file);
     try {
+      toast.success("파일 업로드 중입니다.");
       setIsLoading(true);
       await  axios.post("http://localhost:4000/api/upload", formData).then(res => {
-        console.log(`성공`);
         path=res.data.location;
-        console.log(path);
       }).catch(err => {
         console.log(`실패`);
       });

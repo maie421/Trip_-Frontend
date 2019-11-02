@@ -4,6 +4,7 @@ import useInput from "../../Hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
 import { PASSWORD_FIND,JOIN,LOGIN,LOCAL_LOG_IN} from "./LoginQueries";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default () => {
   const [action, setAction] = useState("logIn");
@@ -75,7 +76,7 @@ export default () => {
           }
         }catch(e) {
           console.log(e);
-          toast.error("Cant confirm secret,check again");
+          toast.error("비밀번호를 다시 입력하세요");
         }
       }
     }

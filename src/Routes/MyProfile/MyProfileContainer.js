@@ -3,7 +3,8 @@ import {gql} from "apollo-boost";
 import {useQuery, useMutation} from "react-apollo-hooks";
 import MyProfilePresenter from "./MyProfilePresenter"
 import {MY_POST_D} from "./MyProfileQuery";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const GET_USER=gql`
     query me{
@@ -40,7 +41,7 @@ export default () => {
     }
     const PostDelete=async (e)=>{
     try{
-        console.log(e);
+      toast.success("삭제중입니다");
       await mypostMutation({
         variables: {
             id:e
@@ -51,8 +52,6 @@ export default () => {
           throw e;
         }
     };
-    console.log(Postdata);
-    console.log(data);
     return <MyProfilePresenter 
         loading={loading}  
         Detail={Detail}
