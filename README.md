@@ -10,8 +10,10 @@
   <li>웹라이브러리:React</li>
 </ul>
 <h3>graphql 부분</h3>
-<img src="https://user-images.githubusercontent.com/35258834/69489316-4655fb00-0eb9-11ea-9b03-e34813fa9e7d.JPG" style="float:left">
-
+<img src="https://user-images.githubusercontent.com/35258834/69489360-6f2ac000-0eba-11ea-8251-7f3cd2e51401.JPG">
+<img src="https://user-images.githubusercontent.com/35258834/69489361-6fc35680-0eba-11ea-8bfd-a3748e438929.JPG">
+<h3>화면</h3>
+동영상:https://youtu.be/zT-CErO3-EU
 <h3>기능</h3>
 
 1. 메인페이지<br>
