@@ -1,7 +1,6 @@
-img.alignleft{float:left}
-
 # react,graphql를 사용한 여행 소통 프로젝트
 <h2>※프로젝트 완료</h2>
+동영상:https://youtu.be/zT-CErO3-EU
 <h3>공헌한 내용</h3>
 <ul>
   <li>참여도: 개인프로젝트</li>
@@ -18,7 +17,6 @@ img.alignleft{float:left}
 </div>
 <h3>화면</h3>
 <img src="https://user-images.githubusercontent.com/35258834/69489386-cf216680-0eba-11ea-8b44-bc6675789fc5.JPG" width="70%">
-동영상:https://youtu.be/zT-CErO3-EU
 <h3>기능</h3>
 
 1. 메인페이지<br>
