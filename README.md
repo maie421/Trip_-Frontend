@@ -1,3 +1,5 @@
+img.alignleft{float:left}
+
 # react,graphql를 사용한 여행 소통 프로젝트
 <h2>※프로젝트 완료</h2>
 <h3>공헌한 내용</h3>
@@ -10,9 +12,12 @@
   <li>웹라이브러리:React</li>
 </ul>
 <h3>graphql 부분</h3>
-<img src="https://user-images.githubusercontent.com/35258834/69489360-6f2ac000-0eba-11ea-8251-7f3cd2e51401.JPG">
-<img src="https://user-images.githubusercontent.com/35258834/69489361-6fc35680-0eba-11ea-8bfd-a3748e438929.JPG">
+<div>
+<img src="https://user-images.githubusercontent.com/35258834/69489360-6f2ac000-0eba-11ea-8251-7f3cd2e51401.JPG" width="30%" style="float: left;">
+<img src="https://user-images.githubusercontent.com/35258834/69489361-6fc35680-0eba-11ea-8bfd-a3748e438929.JPG" width="30%"style="float: right;">
+</div>
 <h3>화면</h3>
+<img src="https://user-images.githubusercontent.com/35258834/69489386-cf216680-0eba-11ea-8b44-bc6675789fc5.JPG" width="70%">
 동영상:https://youtu.be/zT-CErO3-EU
 <h3>기능</h3>
 
