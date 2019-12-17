@@ -6,8 +6,9 @@
   <li>참여도: 개인프로젝트</li>
   <li>검색 결과 데이터 요청 및 출력:</li>
   <li>언어: HTML, CSS ,javascript</li>
-  <li>데이터베이스:graphql</li>
-  <li>프레임워크:Node.js</li>
+  <li>데이터베이스:PostgreSQL</li>
+  <li>프라임워크:express</li>
+  <li>언어:Node.js</li>
   <li>웹라이브러리:React</li>
 </ul>
 <h3>graphql 부분</h3>
